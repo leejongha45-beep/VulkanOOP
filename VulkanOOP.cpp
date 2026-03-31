@@ -4,18 +4,20 @@
 import vulkan_hpp;
 #endif
 
-#include <GLFW/glfw3.h>
-
 #include <iostream>
 #include <stdexcept>
 #include <cstdlib>
+
+#include "Engine/Engine.h"
 
 #define VULKAN_HPP_NO_STRUCT_CONSTRUCTORS
 #include <vulkan/vulkan.hpp>
 
 int main()
 {
+	Engine engine;
 
+	engine.run();
 
 	return 0;
 }
