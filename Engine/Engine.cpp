@@ -1,4 +1,6 @@
 #include "Engine.h"
+#include "EngineObject.h"
+#include "../Instance/VulkanInstance.h"
 
 Engine::Engine()
 {
@@ -6,6 +8,7 @@ Engine::Engine()
 
 Engine::~Engine()
 {
+	Release();
 }
 
 void Engine::run()
@@ -15,12 +18,16 @@ void Engine::run()
 	Initialize();
 
 	Update();
-
-	Release();
 }
 
 void Engine::Initialize()
 {
+	{
+		if (!instance)
+			instance = new VulkanInstance;
+		if (instance)
+			instance->create();
+	}
 }
 
 void Engine::Update()
@@ -31,7 +38,17 @@ void Engine::Update()
 
 void Engine::Release()
 {
-	glfwDestroyWindow(window);
+	if (instance)
+	{
+		delete instance;
+		instance = nullptr;
+	}
+
+	if (window)
+	{
+		glfwDestroyWindow(window);
+		window = nullptr;
+	}
 
 	glfwTerminate();
 }

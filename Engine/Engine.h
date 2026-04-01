@@ -1,7 +1,6 @@
 #pragma once
 
-#define GLFW_INCLUDE_VULKAN
-#include <GLFW/glfw3.h>
+#include "../VulkanOOP.h"
 
 class Engine
 {
@@ -18,8 +17,8 @@ private:
 
 private:
 	GLFWwindow* window = nullptr;
-
 	// 창 생성
 	void initWindow();
-	
+
+	class EngineObject* instance = nullptr;
 };
