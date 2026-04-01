@@ -21,4 +21,5 @@ private:
 	void initWindow();
 
 	class EngineObject* instance = nullptr;
+	class EngineObject* device = nullptr;
 };

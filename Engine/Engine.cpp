@@ -1,6 +1,7 @@
 #include "Engine.h"
 #include "EngineObject.h"
 #include "../Instance/VulkanInstance.h"
+#include "../Device/VulkanDevice.h"
 
 Engine::Engine()
 {
@@ -27,6 +28,13 @@ void Engine::Initialize()
 			instance = new VulkanInstance;
 		if (ENSURE(instance))
 			instance->create();
+	}
+
+	{
+		if (!device)
+			device = new VulkanDevice;
+		if (ENSURE(device))
+			device->create();
 	}
 }
 
