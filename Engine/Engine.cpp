@@ -25,7 +25,7 @@ void Engine::Initialize()
 	{
 		if (!instance)
 			instance = new VulkanInstance;
-		if (instance)
+		if (ENSURE(instance))
 			instance->create();
 	}
 }
@@ -66,4 +66,5 @@ void Engine::initWindow()
 
 	if (!window)
 		window = glfwCreateWindow(WIDTH, HEIGHT, "Vulkan", nullptr, nullptr);
+	ENSURE(window);
 }
