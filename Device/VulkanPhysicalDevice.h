@@ -10,10 +10,10 @@
 //   요구사항 3 : 적합한 장치 필터링 및 사용자 선택 (supportedDevicesVector, Input)
 //   요구사항 4 : 선택한 물리장치 저장 (physicalDevice)
 // isDeviceSuitable() :
-//   검사 1 : Vulkan API 1.3 이상 지원 확인 (supportsVulkan1_3)
-//   검사 2 : Graphics Queue Family 지원 확인 (supportsGraphics)
-//   검사 3 : 필요한 물리장치 확장 지원 확인 (supportsAllRequiredExtensions)
-//   검사 4 : 필요한 기능 지원 확인 — dynamicRendering, extendedDynamicState (supportsRequiredFeatures)
+//   요구사항 1 : Vulkan API 1.3 이상 지원 확인 (supportsVulkan1_3)
+//   요구사항 2 : Graphics Queue Family 지원 확인 (supportsGraphics)
+//   요구사항 3 : 필요한 물리장치 확장 지원 확인 (supportsAllRequiredExtensions)
+//   요구사항 4 : 필요한 기능 지원 확인 — dynamicRendering, extendedDynamicState (supportsRequiredFeatures)
 class VulkanPhysicalDevice : public EngineObject
 {
 public:

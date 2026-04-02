@@ -77,10 +77,10 @@ void VulkanPhysicalDevice::create()
 
 bool VulkanPhysicalDevice::isDeviceSuitable(const vk::raii::PhysicalDevice& physicalDevice)
 {
-	// 검사 1 : Vulkan APIVersion 지원 확인
+	// 요구사항 1 : Vulkan APIVersion 지원 확인
 	bool supportsVulkan1_3 = physicalDevice.getProperties().apiVersion >= vk::ApiVersion13;
 
-	// 검사 2 : graphic queueFamily를 지원하는지 확인
+	// 요구사항 2 : graphic queueFamily를 지원하는지 확인
 	auto queueFamilies	  = physicalDevice.getQueueFamilyProperties();
 	bool supportsGraphics = std::ranges::any_of(
 		queueFamilies,
@@ -89,7 +89,7 @@ bool VulkanPhysicalDevice::isDeviceSuitable(const vk::raii::PhysicalDevice& phys
 			return !!(queueFamily.queueFlags & vk::QueueFlagBits::eGraphics);
 		});
 
-	// 검사 3 : 필요한 물리장치 확장을 지원하는지 확인
+	// 요구사항 3 : 필요한 물리장치 확장을 지원하는지 확인
 	auto availableDeviceExtensions	   = physicalDevice.enumerateDeviceExtensionProperties();
 	bool supportsAllRequiredExtensions = std::ranges::all_of(
 		requiredDeviceExtensions,
@@ -103,7 +103,7 @@ bool VulkanPhysicalDevice::isDeviceSuitable(const vk::raii::PhysicalDevice& phys
 				});
 		});
 
-	// 검사 4 : 물리장치가 필요한 기능을 지원하는지 확인
+	// 요구사항 4 : 물리장치가 필요한 기능을 지원하는지 확인
 	auto features = physicalDevice.template getFeatures2<
 		vk::PhysicalDeviceFeatures2, vk::PhysicalDeviceVulkan13Features,
 		vk::PhysicalDeviceExtendedDynamicStateFeaturesEXT>();
