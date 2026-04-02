@@ -19,7 +19,7 @@ find_package(tinyobjloader CONFIG REQUIRED)
 find_package(Stb REQUIRED)
 
 # 이 프로젝트의 실행 파일에 소스를 추가합니다.
-add_executable (VulkanOOP "VulkanOOP.cpp" "VulkanOOP.h" "Engine/Engine.h" "Engine/Engine.cpp" "Instance/VulkanInstance.h" "Instance/VulkanInstance.cpp" "Engine/EngineObject.h" "Device/VulkanDevice.h"  "Device/VulkanDevice.cpp")
+add_executable (VulkanOOP "VulkanOOP.cpp" "VulkanOOP.h" "Engine/Engine.h" "Engine/Engine.cpp" "Instance/VulkanInstance.h" "Instance/VulkanInstance.cpp" "Engine/EngineObject.h" "Device/VulkanPhysicalDevice.h"  "Device/VulkanPhysicalDevice.cpp" "Device/VulkanDevice.h" "Device/VulkanDevice.cpp")
 
 target_include_directories(VulkanOOP PRIVATE ${Stb_INCLUDE_DIR})
 
