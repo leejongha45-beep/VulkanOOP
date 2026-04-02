@@ -15,5 +15,6 @@ private:
 
 	vk::raii::PhysicalDevice physicalDevice = nullptr;
 	const class VulkanInstance* instanceRef = nullptr;
+	std::vector<const char*> requiredDeviceExtensions = { vk::KHRSwapchainExtensionName };
 	bool isDeviceSuitable(const vk::raii::PhysicalDevice& physicalDeivce);
 };

@@ -1,7 +1,7 @@
 #include "Engine.h"
-#include "EngineObject.h"
-#include "../Instance/VulkanInstance.h"
 #include "../Device/VulkanDevice.h"
+#include "../Instance/VulkanInstance.h"
+#include "EngineObject.h"
 
 Engine::Engine()
 {
@@ -23,19 +23,15 @@ void Engine::run()
 
 void Engine::Initialize()
 {
-	{
-		if (!instance)
-			instance = new VulkanInstance;
-		if (ENSURE(instance))
-			instance->create();
-	}
+	if (!instance)
+		instance = new VulkanInstance;
+	if (ENSURE(instance))
+		instance->create();
 
-	{
-		if (!device)
-			device = new VulkanDevice;
-		if (ENSURE(device))
-			device->create();
-	}
+	if (!device)
+		device = new VulkanDevice(*dynamic_cast<VulkanInstance*>(instance));
+	if (ENSURE(device))
+		device->create();
 }
 
 void Engine::Update()
@@ -63,13 +59,12 @@ void Engine::Release()
 
 void Engine::initWindow()
 {
-	// glfw 초기화
 	glfwInit();
 
 	glfwWindowHint(GLFW_CLIENT_API, GLFW_NO_API);
 	glfwWindowHint(GLFW_RESIZABLE, GLFW_FALSE);
 
-	constexpr uint32_t WIDTH = 800;
+	constexpr uint32_t WIDTH  = 800;
 	constexpr uint32_t HEIGHT = 600;
 
 	if (!window)
