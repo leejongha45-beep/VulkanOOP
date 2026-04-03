@@ -1,4 +1,4 @@
-#include "VulkanInstance.h"
+﻿#include "VulkanInstance.h"
 #include <ranges>
 
 VulkanInstance::VulkanInstance()
@@ -24,7 +24,7 @@ void VulkanInstance::create()
 
 	// 요구사항 2 : 지원하는 확장 검사
 	auto requiredExtensions = getRequiredInstanceExtensions(); // 필요한 확장목록
-	auto extensionProperties = context.enumerateInstanceExtensionProperties(); // 현재 있는 확장 목록
+	auto extensionProperties = context.enumerateInstanceExtensionProperties(); // 현재 지원되는 확장 목록
 	auto unsupportedProperties = std::ranges::filter_view(requiredExtensions, [&extensionProperties](const auto& requiredProperty)
 		{
 			return std::ranges::none_of(extensionProperties, [requiredProperty](const auto& extensionProperty)
@@ -46,7 +46,7 @@ void VulkanInstance::create()
 		requiredLayers.assign(validationLayers.begin(), validationLayers.end());
 	}
 
-	auto layerProperties = context.enumerateInstanceLayerProperties(); // 필요한 레이어 목록
+	auto layerProperties = context.enumerateInstanceLayerProperties(); // 현재 지원되는 레이어 목록
 	auto unsupportedLayers = std::ranges::filter_view(requiredLayers, [&layerProperties](const auto& requiredLayer)
 		{
 			return std::ranges::none_of(layerProperties, [requiredLayer](const auto& layerProperty)

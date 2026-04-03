@@ -11,7 +11,9 @@ import vulkan_hpp;
 
 #include <iostream>
 
+#ifndef VULKAN_HPP_NO_STRUCT_CONSTRUCTORS
 #define VULKAN_HPP_NO_STRUCT_CONSTRUCTORS
+#endif
 #include <vulkan/vulkan.hpp>
 
 #define ENSURE(expr) \

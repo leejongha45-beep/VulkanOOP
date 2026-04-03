@@ -1,6 +1,7 @@
-#include "Engine.h"
+﻿#include "Engine.h"
 #include "../Device/VulkanPhysicalDevice.h"
 #include "../Instance/VulkanInstance.h"
+#include "../Device/VulkanDevice.h"
 #include "EngineObject.h"
 
 Engine::Engine()
@@ -32,6 +33,11 @@ void Engine::Initialize()
 		physicalDevice = new VulkanPhysicalDevice(*dynamic_cast<VulkanInstance*>(instance));
 	if (ENSURE(physicalDevice))
 		physicalDevice->create();
+
+	if (!device)
+		device = new VulkanDevice(*dynamic_cast<VulkanPhysicalDevice*>(physicalDevice));
+	if (ENSURE(device))
+		device->create();
 }
 
 void Engine::Update()

@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 #include "../VulkanOOP.h"
 #include "../Engine/EngineObject.h"
@@ -20,6 +20,16 @@ public:
 	VulkanPhysicalDevice();
 	VulkanPhysicalDevice(const class VulkanInstance& input);
 	virtual ~VulkanPhysicalDevice();
+
+	inline const vk::raii::PhysicalDevice* getPhysicalDevice() const
+	{
+		return &physicalDevice;
+	}
+
+	inline const std::vector<const char*>* getRequiredDeviceExtensions() const
+	{
+		return &requiredDeviceExtensions;
+	}
 
 private:
 	virtual void create() override;
