@@ -1,6 +1,7 @@
 ﻿#include "Engine.h"
-#include "../Device/VulkanPhysicalDevice.h"
 #include "../Instance/VulkanInstance.h"
+#include "../Device/VulkanPhysicalDevice.h"
+#include "../Surface/VulkanSurface.h"
 #include "../Device/VulkanDevice.h"
 #include "EngineObject.h"
 
@@ -29,13 +30,18 @@ void Engine::Initialize()
 	if (ENSURE(instance))
 		instance->create();
 
+	if (!surface)
+		surface = new VulkanSurface(dynamic_cast<VulkanInstance*>(instance), window);
+	if (ENSURE(surface))
+		surface->create();
+
 	if (!physicalDevice)
-		physicalDevice = new VulkanPhysicalDevice(*dynamic_cast<VulkanInstance*>(instance));
+		physicalDevice = new VulkanPhysicalDevice(dynamic_cast<VulkanInstance*>(instance));
 	if (ENSURE(physicalDevice))
 		physicalDevice->create();
 
 	if (!device)
-		device = new VulkanDevice(*dynamic_cast<VulkanPhysicalDevice*>(physicalDevice));
+		device = new VulkanDevice(dynamic_cast<VulkanPhysicalDevice*>(physicalDevice), dynamic_cast<VulkanSurface*>(surface));
 	if (ENSURE(device))
 		device->create();
 }
@@ -48,6 +54,24 @@ void Engine::Update()
 
 void Engine::Release()
 {
+	if (device)
+	{
+		delete device;
+		device = nullptr;
+	}
+
+	if (physicalDevice)
+	{
+		delete physicalDevice;
+		physicalDevice = nullptr;
+	}
+
+	if (surface)
+	{
+		delete surface;
+		surface = nullptr;
+	}
+
 	if (instance)
 	{
 		delete instance;

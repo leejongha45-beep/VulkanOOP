@@ -20,7 +20,8 @@ private:
 	// 창 생성
 	void initWindow();
 
-	class EngineObject* instance = nullptr;
+	class EngineObject* instance	   = nullptr;
+	class EngineObject* surface		   = nullptr;
 	class EngineObject* physicalDevice = nullptr;
-	class EngineObject* device = nullptr;
+	class EngineObject* device		   = nullptr;
 };

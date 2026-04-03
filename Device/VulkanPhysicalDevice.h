@@ -18,7 +18,7 @@ class VulkanPhysicalDevice : public EngineObject
 {
 public:
 	VulkanPhysicalDevice();
-	VulkanPhysicalDevice(const class VulkanInstance& input);
+	VulkanPhysicalDevice(const class VulkanInstance* input);
 	virtual ~VulkanPhysicalDevice();
 
 	inline const vk::raii::PhysicalDevice* getPhysicalDevice() const

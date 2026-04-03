@@ -22,7 +22,7 @@ public:
 	VulkanInstance();
 	virtual ~VulkanInstance();
 
-	inline const vk::raii::Instance* getInstance() const
+	inline const vk::raii::Instance* getInstanceHandle() const
 	{
 		return &instance;
 	}

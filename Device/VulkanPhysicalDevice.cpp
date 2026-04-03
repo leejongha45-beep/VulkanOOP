@@ -7,9 +7,9 @@ VulkanPhysicalDevice::VulkanPhysicalDevice()
 {
 }
 
-VulkanPhysicalDevice::VulkanPhysicalDevice(const VulkanInstance& input)
+VulkanPhysicalDevice::VulkanPhysicalDevice(const VulkanInstance* input)
 {
-	instanceRef = &input;
+	instanceRef = input;
 	ENSURE(instanceRef);
 }
 
@@ -24,7 +24,7 @@ void VulkanPhysicalDevice::create()
 		return;
 
 	// instanceHandle 가져오기
-	const auto* instanceHandle = instanceRef->getInstance();
+	const auto* instanceHandle = instanceRef->getInstanceHandle();
 	if (!ENSURE(instanceHandle)) return;
 
 	// 요구사항 2 : 물리장치 배열 가져오기
